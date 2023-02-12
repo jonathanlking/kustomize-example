@@ -1,0 +1,15 @@
+resources:
+- service
+
+configMapGenerator:
+- name: "-example-configmap"
+
+patches:
+- target:
+    kind: Deployment
+  patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/envFrom/-
+      value:
+        configMapRef:
+          name: "-example-configmap"
