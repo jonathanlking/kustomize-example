@@ -20,11 +20,11 @@ let
         linux = "FrQsrdzeNs/q/71Fm+3ANJ5m9S56+hIIPUYwsTWPCqU=";
       };
     };
-    kustomize_4_5_6 = self.callPackage ./nix/kustomize_binary.nix {
-      version = "4.5.6";
+    kustomize_4_5_7 = self.callPackage ./nix/kustomize_binary.nix {
+      version = "4.5.7";
       sha256 = {
-        darwin = "S32sksjy3Tg2USdseNnm0oAx9Q83Ec2Yc0egjt8MgzU=";
-        linux = "aALVSRfrWIf5xxAxxZ5oRcGkkME4gbBQ6mlZtxS0pDI=";
+        darwin = "b9V+eO0MBrW92CdQxdxtD5kqe5JtEU/pS+Rten4ytjo=";
+        linux = "cB48S/oU5MUg1IH99xMfkCUxv8ACy1Bi3PMSY6CccMk=";
       };
     };
   };
