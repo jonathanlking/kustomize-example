@@ -11,4 +11,4 @@ spec:
       - name: app
         envFrom:
         - configMapRef:
-            name: "-"
+            name: "-example-configmap"
