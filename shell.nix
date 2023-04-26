@@ -5,5 +5,6 @@ pkgs.mkShell {
     pkgs.kustomize_3_9_2
     pkgs.kustomize_3_9_3
     pkgs.kustomize_4_5_7
+    pkgs.kustomize_3_10_patched
   ];
 }

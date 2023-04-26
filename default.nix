@@ -5,7 +5,7 @@ let
     sha256 = "11w3wn2yjhaa5pv20gbfbirvjq6i3m7pqrq2msf0g7cv44vijwgw";
   };
 
-  overlay = self: _super: {
+  overlay = self: super: {
     kustomize_3_9_2 = self.callPackage ./nix/kustomize_binary.nix {
       version = "3.9.2";
       sha256 = {
@@ -27,6 +27,26 @@ let
         linux = "cB48S/oU5MUg1IH99xMfkCUxv8ACy1Bi3PMSY6CccMk=";
       };
     };
+
+    # Suggestion from https://github.com/kubernetes-sigs/kustomize/issues/5047#issuecomment-1470559774
+    kustomize_3_10_patched = (super.callPackage "${super.path}/pkgs/development/tools/kustomize/3.nix" {
+      buildGoModule = args: super.buildGoModule (args // {
+        overrideModAttrs = _: {
+          postInstall = ''
+            pushd $out/sigs.k8s.io/kustomize/
+            patch -p1 -i ${./PrefixesSuffixesEquals.patch}
+            popd
+          '';
+        };
+        vendorSha256 = "sha256-803ETaTQ9vABH+QV0sMslv0h5kQBEbProN/25lBGAQA=";
+      });
+    }).overrideAttrs (oldAttrs: {
+      installPhase =
+        ''
+          ${oldAttrs.installPhase}
+          mv "$out/bin/kustomize" "$out/bin/kustomize_3_10_patched"
+        '';
+    });
   };
 
   pkgs = import baseNixpkgs ({ overlays = [ overlay ]; });

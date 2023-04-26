@@ -1,0 +1,13 @@
+diff --git i/api/resource/resource.go w/api/resource/resource.go
+index 53a62dffd..3585593d3 100644
+--- i/api/resource/resource.go
++++ w/api/resource/resource.go
+@@ -321,7 +321,7 @@ func (r *Resource) getCsvAnnotation(name string) []string {
+ // as OutermostPrefixSuffix but performs a deeper comparison
+ // of the suffix and prefix slices.
+ func (r *Resource) PrefixesSuffixesEquals(o ResCtx) bool {
+-	return SameEndingSubarray(r.GetNamePrefixes(), o.GetNamePrefixes()) && SameEndingSubarray(r.GetNameSuffixes(), o.GetNameSuffixes())
++	return SameEndingSubarray(r.GetNamePrefixes(), o.GetNamePrefixes()) || SameEndingSubarray(r.GetNameSuffixes(), o.GetNameSuffixes())
+ }
+ 
+ // RemoveBuildAnnotations removes annotations created by the build process.
