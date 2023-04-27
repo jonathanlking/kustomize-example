@@ -44,7 +44,7 @@ let
       installPhase =
         ''
           ${oldAttrs.installPhase}
-          mv "$out/bin/kustomize" "$out/bin/kustomize_3_10_patched"
+          mv "$out/bin/kustomize" "$out/bin/kustomize_patched"
         '';
     });
   };
