@@ -1,13 +1,15 @@
 diff --git i/api/resource/resource.go w/api/resource/resource.go
-index 53a62dffd..3585593d3 100644
+index 53a62dffd..3d471e6d9 100644
 --- i/api/resource/resource.go
 +++ w/api/resource/resource.go
-@@ -321,7 +321,7 @@ func (r *Resource) getCsvAnnotation(name string) []string {
+@@ -320,8 +320,8 @@ func (r *Resource) getCsvAnnotation(name string) []string {
+ // PrefixesSuffixesEquals is conceptually doing the same task
  // as OutermostPrefixSuffix but performs a deeper comparison
  // of the suffix and prefix slices.
- func (r *Resource) PrefixesSuffixesEquals(o ResCtx) bool {
+-func (r *Resource) PrefixesSuffixesEquals(o ResCtx) bool {
 -	return SameEndingSubarray(r.GetNamePrefixes(), o.GetNamePrefixes()) && SameEndingSubarray(r.GetNameSuffixes(), o.GetNameSuffixes())
-+	return SameEndingSubarray(r.GetNamePrefixes(), o.GetNamePrefixes()) || SameEndingSubarray(r.GetNameSuffixes(), o.GetNameSuffixes())
++func(r * Resource) PrefixesSuffixesEquals(o ResCtx) bool {
++    return (len(r.GetNamePrefixes()) == 0 || len(o.GetNamePrefixes()) == 0 || SameEndingSubarray(r.GetNamePrefixes(), o.GetNamePrefixes())) && (len(r.GetNameSuffixes()) == 0 || len(o.GetNameSuffixes()) == 0 || SameEndingSubarray(r.GetNameSuffixes(), o.GetNameSuffixes()))
  }
  
  // RemoveBuildAnnotations removes annotations created by the build process.

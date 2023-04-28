@@ -38,7 +38,7 @@ let
             popd
           '';
         };
-        vendorSha256 = "sha256-803ETaTQ9vABH+QV0sMslv0h5kQBEbProN/25lBGAQA=";
+        vendorSha256 = "sha256-E00uxwRHe2L8tY3i2o/e0BavhNJcEdXKdXP07hifOC0=";
       });
     }).overrideAttrs (oldAttrs: {
       installPhase =
